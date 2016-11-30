@@ -102,12 +102,14 @@ int main(int argc, char *argv[]) {
         Grid_Pos start_position = { tiles[name], RUNNER_START_ROW, RUNNER_START_COL };
 
         while( marked.find(start_position) == marked.end() ){
-           for( int i = target_row - 1; i < target_row + 1; i++ ){
-                for( int j = target_col - 1; j < target_col + 1; j++ ){
+           for( int i = target_row - 1; i <= target_row + 1; i++ ){
+                for( int j = target_col - 1; j <= target_col + 1; j++ ){
                     if( i >= 0 && i < MAP_ROWS && j >= 0 && j < MAP_COLUMNS && ( i == target_row ^ j == target_col) ){
                         name = grid[i][j];
                         cost = tiles[name];
                         next_position = {cost, i, j};
+                        //cout << "Current cost: " << dist[next_position] << endl;
+                        //cout << "Possible cost: " << dist[position] + cost << endl;
                         if( dist[position] + cost < dist[next_position] && marked.find(next_position) == marked.end() ){
                             dist[next_position] = dist[position] + cost;
                             prev[next_position] = position;
@@ -119,10 +121,20 @@ int main(int argc, char *argv[]) {
             while( !frontier.empty() && marked.find(frontier.top()) != marked.end() ){
                 frontier.pop();
             }
+            /*
+            priority_queue<Grid_Pos, vector<Grid_Pos>, GridPos_Compare> pq;
+            cout << "Frontier:" << endl;
+            pq = frontier;
+            while(!pq.empty()){
+                cout << pq.top().cost << " " << pq.top().row << " " << pq.top().col << endl;
+                pq.pop();
+            }
+            */
             target_row = frontier.top().row;
             target_col = frontier.top().col;
             cost = frontier.top().cost;
             position = {cost, target_row, target_col};
+            //cout << "Chosen: " << position.row << " " << position.col << endl;
             marked.insert(position);
         }  
         total_cost = dist[start_position];
