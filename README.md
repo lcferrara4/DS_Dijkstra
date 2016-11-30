@@ -43,6 +43,78 @@ Measure
 | 1000          | 38.400162     | 185.359375     |
 |---------------|---------------|----------------|
 
+Output File Differences
+-----------------------
+
+Test 1: 
+    Given output:           Our output: 
+        63                      63
+        3 3                     3 3
+        4 3                     4 3
+        5 3                     5 3
+        5 4                     5 4 
+        5 5                     6 4 ** Different
+        6 5                     6 5
+        6 6                     6 6
+        6 7                     6 7
+        6 8                     6 8
+        7 8                     7 8
+        8 8                     8 8
+        8 9                     8 9
+        9 9                     9 9
+        10 9                    10 9
+        11 9                    11 9
+        11 10                   12 9 ** Diferent 
+        12 10                   12 10
+        12 11                   12 11
+        13 11                   13 11
+        13 12                   13 12
+        13 13                   13 13
+        14 13                   14 13
+        15 13                   15 13
+        16 13                   16 13 
+        17 13                   17 13
+        17 14                   17 14
+        17 15                   17 15
+        17 16                   17 16
+        17 17                   17 17
+        17 18                   17 18
+
+    Original: (5,5) , (11, 10)
+    Alternative: (6,4) , (12, 9)
+    
+    Original: 5,5 = g = 1
+              11,10 = m = 7 
+                        = 8
+    Alternative: 6,4 = g  = 1 
+                 12,9 = m = 7 
+                          = 8 
+    While different tiles are chosen their total cost remains the same showing there is more than one shortest path with a total cost of 63. 
+
+Test 2: 
+    Given output:           Our output: 
+        17                      17
+        0 0                     0 0
+        0 1                     1 0 **different
+        1 1                     2 0 **different
+        2 1                     2 1
+        2 2                     2 2
+        2 3                     2 3
+        3 3                     3 3
+
+    Original: (0,1) , (1,1)
+    Alternative: (1,0) , (2,0)
+
+    Original: 0,1 = g = 1
+              1,1 = r = 5
+                      = 6
+    Alternative: 1,0 = f = 3
+                 2,0 = f = 3
+                         = 6
+    While different tiles are chosen the total cost still adds up to 6.  The total costs of the full paths are also equal at 17 showing there is more than one valid shortest path.                 
+        
+              
+        
 Questions
 ----------
 
