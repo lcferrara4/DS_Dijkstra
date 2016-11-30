@@ -29,3 +29,35 @@ Output
     Cost
     [(ROW_0, COL_0), ...]
 
+Measure
+--------
+
+| N             | Elapsed Time  | Memory Usage   |
+|---------------|---------------|----------------|
+| 10            | 0.002998      | 1.171875       |
+| 20            | 0.008997      | 1.226562       |
+| 50            | 0.057990      | 1.617188       |
+| 100           | 0.260960      | 3.003906       |
+| 200           | 1.164822      | 8.539062       |
+| 500           | 8.534702      | 47.234375      |
+| 1000          | 38.400162     | 185.359375     |
+|---------------|---------------|----------------|
+
+Questions
+----------
+
+* How did you represent the map as a graph?
+
+We represented the map by using a vector of vectors and then used a distance map and a previous map to keep track of shortest distances and the nodes that these distances came from. We also had a map created initially to store the cost of leaving each lettered node.
+
+* What is complexity of your implementation of Dijkstra's Algorithm?
+
+We used a set, 3 maps, a priority queue, and a vector of vector. For space complexity, the graph takes up O(N^2) because the vector of vectors is NxN data. This is the greatest space taken up of any of the data structures, which is why the memory usage increases so drastically with large N's. The maps and priority queue has space complexity of O(N). For time complexity, in worst case, it is O(N^2) for the nested for loops, but it rarely has to check all of these nodes (only when N <= 3. Then checking the priority queue for the nodes not in the marked set would take in worst case O(N) time. Therefore, our time complexity is slightly better than space complexity, but still increases with greater N.
+
+* How well does your implementation scale?
+
+As stated above, as N increases, both time and memorage increase with time scaling slightly better than memory usage does.
+
+* Group member contributions:
+
+We all worked together on every part, woo!
